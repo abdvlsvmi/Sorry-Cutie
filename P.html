@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Very Important Message For You 🌸</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+
+  :root {
+    --blush: #f9c8d0;
+    --rose: #e8728a;
+    --deep-rose: #c0486a;
+    --cream: #fdf5ef;
+    --peach: #fce4d0;
+    --choco: #7b3f2d;
+    --choco-mid: #a0522d;
+    --choco-light: #d4956a;
+    --mint: #e8f5e3;
+    --gold: #e8c47a;
+    --white: #fffaf8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #5a2d3a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── Petal Rain ── */
+  .petals-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    top: -40px;
+    font-size: 1.4rem;
+    animation: fall linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.9; }
+    50%  { transform: translateY(50vh) rotate(180deg) translateX(30px); opacity: 0.7; }
+    100% { transform: translateY(105vh) rotate(360deg) translateX(-20px); opacity: 0; }
+  }
+
+  /* ── Page Layout ── */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Header Card ── */
+  .hero-card {
+    background: linear-gradient(145deg, #fff0f4 0%, #ffeae8 60%, #fdf0e8 100%);
+    border-radius: 32px;
+    padding: 52px 40px 44px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(200, 80, 100, 0.12), 0 2px 8px rgba(200, 80, 100, 0.08);
+    border: 1.5px solid rgba(232, 114, 138, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(249, 200, 208, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(252, 228, 208, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-emoji {
+    font-size: 3.2rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: sway 3s ease-in-out infinite;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .hero-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--deep-rose);
+    line-height: 1.25;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-card h1 span {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: var(--choco-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 24px rgba(180, 60, 80, 0.08);
+    border: 1px solid rgba(232, 114, 138, 0.15);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    color: var(--deep-rose);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #6e3a4a;
+  }
+
+  /* ── The Denial Card ── */
+  .denial-card {
+    background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+    border: 2px dashed rgba(232, 114, 138, 0.4);
+  }
+
+  .denial-card .big-statement {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+    font-weight: 700;
+    color: var(--deep-rose);
+    text-align: center;
+    line-height: 1.5;
+    padding: 8px 0;
+  }
+
+  .denial-card .big-statement .never {
+    display: inline-block;
+    background: var(--rose);
+    color: white;
+    border-radius: 8px;
+    padding: 2px 14px;
+    margin: 0 4px;
+    font-style: italic;
+    transform: rotate(-1deg);
+    box-shadow: 0 3px 12px rgba(200, 80, 100, 0.3);
+  }
+
+  /* ── Compliment Card ── */
+  .compliment-list {
+    list-style: none;
+    margin-top: 12px;
+  }
+
+  .compliment-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #6e3a4a;
+  }
+
+  .compliment-list li .bullet {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Chocolate Card ── */
+  .choco-card {
+    background: linear-gradient(145deg, #3d1c0f 0%, #5c2a15 50%, #7b3f2d 100%);
+    color: #fde8d0;
+    border: none;
+  }
+
+  .choco-card h2 { color: var(--gold); }
+  .choco-card p { color: #f5d5b8; }
+
+  .choco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .choco-piece {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(232, 196, 122, 0.2);
+    border-radius: 16px;
+    padding: 16px 10px;
+    text-align: center;
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .choco-piece::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(232,196,122,0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .choco-piece:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    border-color: rgba(232, 196, 122, 0.5);
+  }
+
+  .choco-piece:hover::before { opacity: 1; }
+
+  .choco-piece .icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+  .choco-piece .label { font-size: 0.78rem; color: #e8c47a; letter-spacing: 0.03em; }
+
+  /* ── Promise Card ── */
+  .promise-card {
+    background: linear-gradient(135deg, #f0f7ee 0%, #e8f5e3 100%);
+    border: 1.5px solid rgba(120, 180, 100, 0.25);
+  }
+
+  .promise-card h2 { color: #4a7a3a; }
+  .promise-card p { color: #4a6a3a; }
+
+  /* ── Button ── */
+  .forgive-wrap {
+    text-align: center;
+    margin: 36px 0 24px;
+  }
+
+  .forgive-btn {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--deep-rose) 100%);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 18px 48px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    cursor: pointer;
+    box-shadow: 0 6px 28px rgba(192, 72, 106, 0.35);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 240px;
+  }
+
+  .forgive-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+  }
+
+  .forgive-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 10px 36px rgba(192, 72, 106, 0.45);
+  }
+
+  .forgive-btn:hover::before { width: 300px; height: 300px; }
+
+  .forgive-btn:active { transform: scale(0.97); }
+
+  .forgive-btn.forgiven {
+    background: linear-gradient(135deg, #e87aa0 0%, #c8a0c8 100%);
+    animation: heartbeat 0.6s ease-out;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.12); }
+    50% { transform: scale(1.06); }
+    75% { transform: scale(1.1); }
+  }
+
+  /* ── Confetti on forgiven ── */
+  .confetti-piece {
+    position: fixed;
+    top: -10px;
+    font-size: 1.4rem;
+    animation: confetti-fall 1.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  @keyframes confetti-fall {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── Signature ── */
+  .signature-card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+    padding: 16px 0 0;
+  }
+
+  .signature-card .from {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--choco-light);
+    margin-bottom: 4px;
+  }
+
+  .signature-card .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--rose);
+    font-weight: 700;
+  }
+
+  .signature-card .ps {
+    font-size: 0.85rem;
+    color: #b07a8a;
+    margin-top: 14px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── Flowers row ── */
+  .flower-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.8rem;
+    margin: 20px 0 8px;
+    flex-wrap: wrap;
+  }
+
+  .flower-row span {
+    display: inline-block;
+    animation: bounce-in 0.5s ease-out backwards;
+  }
+
+  @keyframes bounce-in {
+    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+    70% { transform: scale(1.2) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 500px) {
+    .hero-card { padding: 36px 20px 32px; }
+    .card { padding: 28px 20px; }
+    .choco-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="petals-container" id="petals"></div>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero-card">
+    <span class="hero-emoji">🌸</span>
+    <h1>I'm Sorry<br><span>(Even Though I Never Said That)</span></h1>
+    <p class="hero-subtitle">A Very Sincere — and Very Confused — Apology</p>
+  </div>
+
+  <!-- The Denial -->
+  <div class="card denial-card">
+    <span class="card-icon">🚫</span>
+    <p class="big-statement">
+      I did <span class="never">NEVER</span> call you ugly.<br>
+      I did <span class="never">NEVER</span> call you dumb.
+    </p>
+    <p style="text-align:center; margin-top:18px; font-size:0.95rem; color:#9a5a6a; font-style: italic;">
+      I would sooner call the sun dim. I would sooner call chocolate boring.<br>
+      (Neither of those things are possible, for the record.)
+    </p>
+  </div>
+
+  <!-- The Real Apology -->
+  <div class="card">
+    <span class="card-icon">💗</span>
+    <h2>But Here's What I Am Truly Sorry For</h2>
+    <p>
+      I'm sorry that something I said — or did, or didn't say, or maybe the way I sneezed — made you feel that way, even for a single second.
+      You should never feel anything other than the most spectacular, brilliant person in the room.
+      Because you are. Every single room. Always.
+    </p>
+    <p style="margin-top: 14px;">
+      Your feelings matter to me more than being right. And I'd apologize a hundred times over just to see you smile.
+    </p>
+  </div>
+
+  <!-- Compliments -->
+  <div class="card">
+    <span class="card-icon">✨</span>
+    <h2>Allow Me To Formally Set The Record Straight</h2>
+    <ul class="compliment-list">
+      <li>
+        <span class="bullet">🌹</span>
+        <span>You are <strong>devastatingly</strong> beautiful. Like, genuinely unfair. People probably walk into walls.</span>
+      </li>
+      <li>
+        <span class="bullet">🌷</span>
+        <span>You are <strong>sharp, clever, and perceptive</strong> — you notice things most people miss entirely, and that is a rare and wonderful thing.</span>
+      </li>
+      <li>
+        <span class="bullet">🌸</span>
+        <span>You are my <strong>favourite notification</strong>. Not the app. You. Specifically you.</span>
+      </li>
+      <li>
+        <span class="bullet">🍀</span>
+        <span>When you laugh at something I say, I feel like I won something. <strong>You are the prize, and the judge, and the whole competition.</strong></span>
+      </li>
+      <li>
+        <span class="bullet">💐</span>
+        <span>The world is genuinely a more interesting place because <strong>you exist in it</strong>. I mean that with my whole chest.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Chocolate -->
+  <div class="card choco-card">
+    <span class="card-icon">🍫</span>
+    <h2>My Chocolate-Covered Promise</h2>
+    <p>P.s I will get you the real ones, real soon.</p>
+    <div class="choco-grid">
+      <div class="choco-piece">
+        <span class="icon">🍫</span>
+        <span class="label">Dark & Rich</span>
+      </div>
+      <div class="choco-piece">
+        <span class="icon">🍬</span>
+        <span class="label">Your Fave</span>
+      </div>
+      <div class="choco-piece">
+        <span class="icon">☕</span>
+        <span class="label">Hot Cocoa</span>
+      </div>
+      <div class="choco-piece">
+        <span class="icon">🧁</span>
+        <span class="label">+ Bonus</span>
+      </div>
+    </div>
+    <p style="margin-top: 16px; font-style: italic; color: #e8c47a; font-size: 0.9rem;">
+      P.S. I'll buy you Maltesers because you deserve it.
+    </p>
+  </div>
+
+  
+
+  <!-- Flowers -->
+  <div class="flower-row" id="flowerRow"></div>
+
+  <!-- Forgive Button -->
+  <div class="forgive-wrap">
+    <button class="forgive-btn" id="forgiveBtn" onclick="forgive()">
+      Click for forgiveness 🌸
+    </button>
+  </div>
+
+  <!-- Signature -->
+  <div class="card signature-card">
+    
+    <p class="ps">
+      P.S. You're still the smartest person I know. This webpage is proof I try.<br>
+      P.P.S. I googled "how to say sorry romantically" and then wrote this myself instead. That counts for something.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // ── Petal rain ──
+  const petals = document.getElementById('petals');
+  const petalSymbols = ['🌸', '🌺', '🌷', '🌹', '✿', '❀', '🌼', '💮'];
+
+  function spawnPetal() {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+    const dur = 6 + Math.random() * 8;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = (Math.random() * 4) + 's';
+    petals.appendChild(el);
+    setTimeout(() => el.remove(), (dur + 4) * 1000);
+  }
+
+  for (let i = 0; i < 18; i++) setTimeout(spawnPetal, i * 600);
+  setInterval(spawnPetal, 1400);
+
+  // ── Flower row stagger ──
+  const flowerRow = document.getElementById('flowerRow');
+  const flowers = ['🌹', '🌷', '🌸', '🌺', '🌼', '🌻', '🌷', '🌹', '🌸'];
+  flowers.forEach((f, i) => {
+    const sp = document.createElement('span');
+    sp.textContent = f;
+    sp.style.animationDelay = (i * 0.12) + 's';
+    flowerRow.appendChild(sp);
+  });
+
+  // ── Forgive button ──
+  function forgive() {
+    const btn = document.getElementById('forgiveBtn');
+    if (btn.classList.contains('forgiven')) return;
+    btn.classList.add('forgiven');
+    btn.textContent = 'You forgave me 💕';
+    spawnConfetti();
+  }
+
+  function spawnConfetti() {
+    const icons = ['💕', '🌸', '✨', '💖', '🌹', '🍫', '💗', '🌷', '💝'];
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.fontSize = (1.2 + Math.random() * 1.2) + 'rem';
+        el.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 2500);
+      }, i * 80);
+    }
+  }
+</script>
+</body>
+</html>
